@@ -1,0 +1,8 @@
+alias ls 'ls -G --color'
+alias lsa 'ls -a'
+alias h 'history | head -n 20'
+alias c 'clear'
+alias reload 'source ~/.config/fish/config.fish ; echo Bash config reloaded'
+alias .. 'cd ..'
+alias ... 'cd ../..'
+alias .... 'cd ../../..'

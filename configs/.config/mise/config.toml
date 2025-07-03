@@ -1,0 +1,10 @@
+[tools]
+dotnet = "9"
+node = "latest"
+npm = "latest"
+pnpm = "latest"
+github-cli = "latest"
+
+[settings]
+verbose = false
+
