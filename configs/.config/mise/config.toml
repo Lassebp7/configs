@@ -2,8 +2,10 @@
 dotnet = "9"
 node = "latest"
 npm = "latest"
+bun = "latest"
 pnpm = "latest"
 github-cli = "latest"
+usage = "latest"
 
 [settings]
 verbose = false
