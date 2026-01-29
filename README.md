@@ -1,10 +1,4 @@
-# Winget useful apps
-
-Copy the `apps.json` file into somewhere on windows, and run
-
-`winget import -i apps.json --accept-package-agreements --accept-source-agreements`
-
-from there, to install all winget packages from the `apps.json` file.
+# Configuration repo for personal use
 
 ## Obsidian
 
@@ -30,7 +24,7 @@ dl - C:\Users\LasseBorringPetersen\Downloads\
 
 Install by running the following command in powershell, in administrator mode
 
-´wsl --install´
+`wsl --install`
 
 By default installs Ubuntu distribution
 
@@ -40,7 +34,7 @@ Color scheme: `One Half Dark`
 
 Font face: `JetBrainsMonoNL Nerd Font`
 
-[Link](https://www.nerdfonts.com/font-downloads)
+[Link to font](https://www.nerdfonts.com/font-downloads)
 
 Font size: 13
 
