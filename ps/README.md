@@ -10,19 +10,18 @@ Font size: 12
 
 Line height: 1.2
 
-Cell width: 0.6 
+Cell width: 0.6
 
+## Configuration
 
-## Starship configuration
+Should complete everything for you, including winget-ting all apps from `apps.json`, starship setup, nerd font...
 
-Import the ps-profile, to invoke the starship configuration, by copying it into 
+Simply run
 
-`~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
+```sh
+.\setup.ps1
+```
 
-## Using the preset
+If scripts are blocked, run this first
 
-Run this command to add nerd font symbols
-
-`starship preset nerd-font-symbols -o ~/.config/starship.toml`
-
-
+`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`

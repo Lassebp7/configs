@@ -1,42 +1,38 @@
 # Winget useful apps
 
-## VS Code
+Copy the `apps.json` file into somewhere on windows, and run
 
-`winget install Microsoft.VisualStudioCode`
+`winget import -i apps.json --accept-package-agreements --accept-source-agreements`
 
-Sign in with github, settings sync
-
-## Chrome
-
-`winget install Google.Chrome`
+from there, to install all winget packages from the `apps.json` file.
 
 ## Obsidian
-
-`winget install Obsidian.Obsidian`
 
 Clone the notes repo and add it as an existing vault
 
 [Link to repo](https://github.com/Lassebp7/obsidian-notes)
 
-## Spotify
-
-`winget install Spotify.Spotify`
-
 ## Flow launcher
 
-`winget install Flow-Launcher.Flow-Launcher`
+### Styling
+
+Theme: Cyan Dark
+
+Clock: hh:mm tt
+
+Date: MM'/'dd ddd
 
 ### Shortcuts
 
 dl - C:\Users\LasseBorringPetersen\Downloads\
 
-## Slack
-
-`winget install SlackTechnologies.Slack`
-
 ## WSL
 
-Ubuntu
+Install by running the following command in powershell, in administrator mode
+
+´wsl --install´
+
+By default installs Ubuntu distribution
 
 ### Terminal Styling
 
