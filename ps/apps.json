@@ -64,10 +64,10 @@
 					"PackageIdentifier" : "Flow-Launcher.Flow-Launcher"
 				},
 				{
-    					"PackageIdentifier": "voidtools.Everything"
+    				"PackageIdentifier": "voidtools.Everything"
 				},
 				{
-    					"PackageIdentifier": "Git.Git"
+    				"PackageIdentifier": "Git.Git"
 				},
 				{
 					"PackageIdentifier" : "Spotify.Spotify"
@@ -115,3 +115,4 @@
 	"WinGetVersion" : "1.12.460"
 
 }
+
