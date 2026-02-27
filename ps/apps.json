@@ -68,7 +68,7 @@
 				},
 				{
     					"PackageIdentifier": "Git.Git"
-				}
+				},
 				{
 					"PackageIdentifier" : "Spotify.Spotify"
 				},
@@ -113,4 +113,5 @@
 		}
 	],
 	"WinGetVersion" : "1.12.460"
+
 }
