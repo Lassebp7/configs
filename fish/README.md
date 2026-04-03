@@ -6,11 +6,27 @@ Clone config from
 
 [Link to repo](https://github.com/Lassebp7/configs)
 
-Copy into `.config` folder
+### Symlink
 
-`cp -r fish/.config/* ~/.config/`
+Link your personal config to the one in the repo to get automatic updates.
 
-Consider maybe using a symlink instead?
+First, the `~/.config/fish` folder must be empty, so run
+
+`rm -rf ~/.config/fish`
+
+Then create the link, remember to make the paths match. Will likely be the following:
+
+`ln -s ~/code/configs/fish/.config/fish ~/.config/fish`
+
+And of course check if it worked:
+
+`ls -la ~/.config | grep fish`
+
+If it prints something like
+
+`lrwxrwxrwx fish -> ~/code/configs/fish/.config/fish`
+
+Then its successful, and any change made to either the `~/.config/fish` folder, or to the folder in the repo, with automatically update the other.
 
 ## Mise
 
@@ -35,7 +51,7 @@ Otherwise copy these
 
 ```toml
 [tools]
-dotnet = "9"
+dotnet = "latest"
 node = "latest"
 npm = "latest"
 bun = "latest"
