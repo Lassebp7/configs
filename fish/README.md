@@ -1,8 +1,22 @@
 # Fish shell
 
-## Config
+## Config repo
 
-Clone config from
+First, you need git
+
+`sudo apt install git`
+
+And then you need a shh-key to clone it
+
+`ssh-keygen -t ed25519 -C "your_email@example.com"`
+
+That you then view by running 
+
+`cat ./.ssh/id_ed25519.pub`
+
+Which you then use on Github to create a new SSH key [here](https://github.com/settings/keys)
+
+Then you can clone the config repo from
 
 [Link to repo](https://github.com/Lassebp7/configs)
 
@@ -43,6 +57,8 @@ sudo apt install -y mise
 
 Activation should be automatic after reloading the shell.
 
+You also need to go to the config folder and run `mise trust`
+
 ### Global mise installations
 
 Should already be defined in `fish/.config/mise/config.toml`
@@ -62,3 +78,12 @@ usage = "latest"
 [settings]
 verbose = false
 ```
+
+## Install Starship
+
+`curl -sS https://starship.rs/install.sh | sh` 
+
+## Setting fish shell as default shell
+Run this command in WSL
+
+`chsh -s /usr/bin/fish` 
