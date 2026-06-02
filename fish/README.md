@@ -79,11 +79,27 @@ usage = "latest"
 verbose = false
 ```
 
-## Install Starship
-
-`curl -sS https://starship.rs/install.sh | sh` 
-
 ## Setting fish shell as default shell
 Run this command in WSL
 
 `chsh -s /usr/bin/fish` 
+
+## Install Starship
+
+`curl -sS https://starship.rs/install.sh | sh` 
+
+## Install Lazygit
+
+```sh
+set LAZYGIT_VERSION (curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_nam
+e": "v\K[^"]*')
+
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_"$LAZYGIT_VERSION"_
+Linux_x86_64.tar.gz"
+
+sudo tar -xf lazygit.tar.gz -C /usr/local/bin lazygit
+
+rm lazygit.tar.gz
+
+lazygit --version
+```
