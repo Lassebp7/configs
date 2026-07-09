@@ -43,3 +43,15 @@ Line height: 1.2
 Cell width: 0.6
 
 Remember to set as default terminal as well.
+
+## Rainmeter
+
+Download rainmeter using winget, is also in mass install script
+
+`winget install Rainmeter.Rainmeter`
+
+Then install the `Mond` configuration for it
+
+[Link to Mond](https://visualskins.com/skin/mond)
+
+Make clock non-draggable, remove player, remove weather, remove bin

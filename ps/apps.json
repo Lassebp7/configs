@@ -7,9 +7,6 @@
 			"Packages" : 
 			[
 				{
-					"PackageIdentifier" : "Docker.DockerDesktop"
-				},
-				{
 					"PackageIdentifier" : "Notepad++.Notepad++"
 				},
 				{
@@ -56,6 +53,12 @@
 				},
 				{
 					"PackageIdentifier" : "Microsoft.WindowsTerminal"
+				},
+				{
+					"PackageIdentifier" : "LocalSend.LocalSend"
+				},
+				{
+					"PackageIdentifier" : "Rainmeter.Rainmeter"
 				}
 			],
 			"SourceDetails" : 
