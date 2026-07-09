@@ -1,3 +1,6 @@
+Write-Host "--- Installing Starship using Winget ---" -ForegroundColor Cyan
+winget install --id Starship.Starship
+
 Write-Host "--- Starting Winget Bulk Install ---" -ForegroundColor Cyan
 winget import -i .\apps.json --accept-package-agreements --accept-source-agreements
 
