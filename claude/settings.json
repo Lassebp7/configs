@@ -1,7 +1,20 @@
 {
+  "permissions": {
+    "allow": [
+      "mcp__gateway-web-search"
+    ],
+    "deny": [
+      "WebSearch"
+    ]
+  },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true
   },
-  "theme": "dark",
-  "model": "sonnet"
+  "feedbackDrafts": "quiet",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "theme": "dark"
 }
