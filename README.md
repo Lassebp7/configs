@@ -55,3 +55,14 @@ Then install the `Mond` configuration for it
 [Link to Mond](https://visualskins.com/skin/mond)
 
 Make clock non-draggable, remove player, remove weather, remove bin
+
+## AI skills
+
+Skills shared between Claude Code and OpenCode live in `skills/`. Symlink the folder into both tools:
+
+```sh
+ln -s ~/code/configs/skills ~/.claude/skills
+ln -s ~/code/configs/skills ~/.config/opencode/skills
+```
+
+Add new skills as `skills/<name>/SKILL.md`.
