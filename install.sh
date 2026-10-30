@@ -61,6 +61,12 @@ setup_ssh_key() {
     read -rp "Press Enter when done... "
   fi
 
+  # Trust GitHub's host key up front, so git over SSH never stops at a hidden yes/no prompt
+  if ! ssh-keygen -F github.com >/dev/null 2>&1; then
+    info "Adding github.com to known_hosts"
+    ssh-keyscan -t ed25519,ecdsa,rsa github.com >>"$HOME/.ssh/known_hosts" 2>/dev/null
+  fi
+
   if [[ "$(git -C "$REPO" remote get-url origin)" == https://github.com/* ]]; then
     info "Switching the repo remote to SSH"
     git -C "$REPO" remote set-url origin "$(git -C "$REPO" remote get-url origin | sed -E 's#https://github.com/#git@github.com:#')"
@@ -82,9 +88,12 @@ install_mise_tools() {
 }
 
 install_ai_clis() {
-  if [[ ! -x "$HOME/.opencode/bin/opencode" ]]; then
-    info "Installing OpenCode"
-    curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path
+  local opencode="$HOME/.opencode/bin/opencode" version=""
+  [[ -x "$opencode" ]] && version="$("$opencode" --version 2>/dev/null || true)"
+  if [[ ! "${version#v}" =~ ^([2-9]|[1-9][0-9]+)\. ]]; then
+    info "Installing OpenCode 2"
+    # opencode.ai/install only installs OpenCode 1
+    curl -fsSL https://opencode.ai/v2/install | bash -s -- --no-modify-path
   fi
   if [[ ! -x "$HOME/.local/bin/claude" ]]; then
     info "Installing Claude Code"
@@ -105,6 +114,7 @@ info "Using profile '$profile'"
 
 if ! $links_only; then
   install_packages
+  set_default_shell
   setup_ssh_key
 fi
 
@@ -120,7 +130,6 @@ if ! $links_only; then
     info "Running setup for profile '$profile'"
     "$REPO/profiles/$profile/setup.sh"
   fi
-  set_default_shell
 fi
 
 info "Done. Open a new terminal to load the config."

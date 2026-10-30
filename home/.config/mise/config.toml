@@ -1,6 +1,6 @@
 [tools]
 dotnet = "10"
-node = "latest"
+node = ["26", "24", "latest"]
 npm = "latest"
 bun = "latest"
 pnpm = "latest"
