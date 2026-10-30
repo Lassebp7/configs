@@ -1,0 +1,76 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "lego-anthropic/claude-opus-5-5",
+  "providers": {
+    "lego-anthropic": {
+      "package": "aisdk:@ai-sdk/anthropic",
+      "name": "LEGO Anthropic",
+      "settings": {
+        "baseURL": "https://api.genai.thelegogroup.com/anthropic/v1",
+        "authToken": "{env:LEGO_GENAI_KEY}"
+      },
+      "models": {
+        "claude-haiku-5-5": {
+          "modelID": "eu.anthropic.claude-haiku-5-5",
+          "name": "LEGO Haiku 5.5",
+          "body": {
+            "anthropic_beta": ["thinking-binding-controls-2026-08-01"]
+          },
+          "settings": {
+            "toolStreaming": false
+          }
+        },
+        "claude-sonnet-5-5": {
+          "modelID": "eu.anthropic.claude-sonnet-5-5",
+          "name": "LEGO Sonnet 5.5",
+          "body": {
+            "anthropic_beta": ["thinking-binding-controls-2026-08-01"]
+          }
+        },
+        "claude-opus-5-5": {
+          "modelID": "eu.anthropic.claude-opus-5-5",
+          "name": "LEGO Opus 5.5",
+          // opencode sends thinking.block_binding for Claude >= 5.1; the LEGO gateway (Bedrock)
+          // strips the anthropic-beta header, so the beta must be passed in the body instead
+          "body": {
+            "anthropic_beta": ["thinking-binding-controls-2026-08-01"]
+          }
+        }
+      }
+    },
+    "lego-openai": {
+      "package": "aisdk:@ai-sdk/openai",
+      "name": "LEGO OpenAI",
+      "settings": {
+        "baseURL": "https://api.genai.thelegogroup.com/openai/v1",
+        "apiKey": "{env:LEGO_GENAI_KEY}"
+      },
+      "models": {
+        "gpt-5-5": {
+          "modelID": "gpt-5.5-2026-04-24",
+          "name": "GPT 5.5"
+        },
+        "gpt-6-sol": {
+          "modelID": "gpt-6-sol-2026-09-22",
+          "name": "GPT 6 Sol"
+        },
+        "gpt-6-luna": {
+          "modelID": "gpt-6-luna-2026-09-22",
+          "name": "GPT 6 Luna"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "servers": {
+      "atlassian": {
+        "type": "remote",
+        "url": "https://mcp.atlassian.com/v2/mcp",
+        "disabled": false
+      }
+    }
+  },
+  "experimental": {
+    "todo": true
+  }
+}

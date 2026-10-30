@@ -1,0 +1,3 @@
+[tools]
+saml2aws = "latest"
+aws-cli = "latest"

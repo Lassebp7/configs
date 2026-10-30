@@ -1,0 +1,35 @@
+mode: subagent
+permissions:
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "ls *"
+    effect: allow
+  - action: shell
+    resource: "readlink *"
+    effect: allow
+  - action: shell
+    resource: "stat *"
+    effect: allow
+  - action: shell
+    resource: "git * status*"
+    effect: allow
+  - action: shell
+    resource: "git * log*"
+    effect: allow
+  - action: shell
+    resource: "git * diff*"
+    effect: allow
+  - action: external_directory
+    resource: "~/code/configs/*"
+    effect: allow
+  - action: external_directory
+    resource: "~/.claude/*"
+    effect: allow
+  - action: external_directory
+    resource: "~/.config/opencode/*"
+    effect: allow

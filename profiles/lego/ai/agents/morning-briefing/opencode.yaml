@@ -1,0 +1,68 @@
+mode: primary
+hidden: true
+model: lego-anthropic/claude-haiku-5-5
+steps: 150
+permissions:
+  - action: "*"
+    resource: "*"
+    effect: deny
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: glob
+    resource: "*"
+    effect: allow
+  - action: grep
+    resource: "*"
+    effect: allow
+  - action: read
+    resource: "*.env"
+    effect: deny
+  - action: read
+    resource: "*.env.*"
+    effect: deny
+  - action: external_directory
+    resource: "~/code/lego/*"
+    effect: allow
+  - action: external_directory
+    resource: "/mnt/c/Users/LasseBorringPetersen/Notes/obsidian-notes/Lego/Briefings/*"
+    effect: allow
+  - action: edit
+    resource: "/mnt/c/Users/LasseBorringPetersen/Notes/obsidian-notes/Lego/Briefings/*.md"
+    effect: allow
+  - action: shell
+    resource: "ls *"
+    effect: allow
+  - action: shell
+    resource: "git log *"
+    effect: allow
+  - action: shell
+    resource: "git show *"
+    effect: allow
+  - action: shell
+    resource: "git status *"
+    effect: allow
+  - action: shell
+    resource: "git branch *"
+    effect: allow
+  - action: shell
+    resource: "git diff *"
+    effect: allow
+  - action: execute
+    resource: "*"
+    effect: allow
+  - action: atlassian_get*
+    resource: "*"
+    effect: allow
+  - action: atlassian_search*
+    resource: "*"
+    effect: allow
+  - action: atlassian_atlassianUserInfo
+    resource: "*"
+    effect: allow
+  - action: atlassian_discover
+    resource: "*"
+    effect: allow
+  - action: atlassian_executeRead
+    resource: "*"
+    effect: allow
