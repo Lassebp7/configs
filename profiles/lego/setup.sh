@@ -25,8 +25,19 @@ if ! "$brew" list lego/tap/lego-cli >/dev/null 2>&1; then
   # The formula downloads from a private release with gh's token. gh comes from mise, which isn't activated in this shell
   export PATH="$HOME/.local/share/mise/shims:$PATH"
   if command -v gh >/dev/null && ! gh auth status >/dev/null 2>&1; then
-    info "Logging in to GitHub CLI (authorize SSO for the LEGO org when asked)"
-    gh auth login --hostname github.com --git-protocol ssh --skip-ssh-key --web || true
+    info "Logging in to GitHub CLI"
+    echo "  1. Press Enter at the prompt. gh only starts waiting for the browser after that."
+    echo "  2. Paste the code in the browser, and authorize SSO for the LEGO org."
+    echo "  3. The terminal continues by itself once GitHub says you're all set."
+    # A fresh WSL distro has no browser launcher, so open the URL in the Windows default browser
+    browser=""
+    if [[ -z "${BROWSER:-}" ]] && ! command -v wslview >/dev/null && command -v explorer.exe >/dev/null; then
+      browser="$(mktemp)"
+      printf '#!/bin/sh\nexplorer.exe "$1"\nexit 0\n' >"$browser"
+      chmod +x "$browser"
+    fi
+    BROWSER="${browser:-${BROWSER:-}}" gh auth login --hostname github.com --git-protocol ssh --skip-ssh-key --web || true
+    if [[ -n "$browser" ]]; then rm -f "$browser"; fi
   fi
   # Fail instead of waiting for a password or host key prompt that brew hides
   export GIT_TERMINAL_PROMPT=0 GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=15"

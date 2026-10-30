@@ -88,10 +88,21 @@ install_mise_tools() {
 }
 
 install_ai_clis() {
-  local opencode="$HOME/.opencode/bin/opencode" version=""
-  [[ -x "$opencode" ]] && version="$("$opencode" --version 2>/dev/null || true)"
-  if [[ ! "${version#v}" =~ ^([2-9]|[1-9][0-9]+)\. ]]; then
-    info "Installing OpenCode 2"
+  local opencode="$HOME/.opencode/bin/opencode" installed="" latest=""
+  if [[ -x "$opencode" ]]; then
+    installed="$("$opencode" --version 2>/dev/null || true)"
+    installed="${installed##* }"
+    installed="${installed#v}"
+  fi
+  latest="$(curl -fsSL --max-time 10 https://opencode.ai/update/api/latest/cli/npm 2>/dev/null |
+    sed -n 's/.*"version":"\([^"]*\)".*/\1/p' || true)"
+
+  if [[ -n "$latest" && "$installed" == "$latest" ]]; then
+    info "OpenCode $installed is up to date"
+  elif [[ -z "$latest" && "$installed" =~ ^([2-9]|[1-9][0-9]+)\. ]]; then
+    warn "Could not check the latest OpenCode version, keeping $installed"
+  else
+    info "Installing OpenCode ${latest:-2}${installed:+ (installed: $installed)}"
     # opencode.ai/install only installs OpenCode 1
     curl -fsSL https://opencode.ai/v2/install | bash -s -- --no-modify-path
   fi
