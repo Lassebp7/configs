@@ -12,6 +12,9 @@ if [[ ! -f "$env_file" ]]; then
   chmod 600 "$env_file"
 fi
 
+# Make git fail instead of waiting for a password or host key prompt that brew hides
+export GIT_TERMINAL_PROMPT=0 GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=15"
+
 brew="/home/linuxbrew/.linuxbrew/bin/brew"
 if [[ ! -x "$brew" ]]; then
   info "Installing Homebrew"
@@ -39,8 +42,6 @@ if ! "$brew" list lego/tap/lego-cli >/dev/null 2>&1; then
     BROWSER="${browser:-${BROWSER:-}}" gh auth login --hostname github.com --git-protocol ssh --skip-ssh-key --web || true
     if [[ -n "$browser" ]]; then rm -f "$browser"; fi
   fi
-  # Fail instead of waiting for a password or host key prompt that brew hides
-  export GIT_TERMINAL_PROMPT=0 GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=15"
   if ! timeout 30 git ls-remote "$tap" HEAD >/dev/null 2>&1; then
     warn "No access to $tap. Authorize your SSH key for the LEGO org (https://github.com/settings/keys, Configure SSO), then run: brew tap lego/tap $tap && brew install lego/tap/lego-cli"
   elif ! { "$brew" tap lego/tap "$tap" && "$brew" install lego/tap/lego-cli; }; then
