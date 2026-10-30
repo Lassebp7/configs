@@ -22,11 +22,17 @@ fi
 tap="git@github.com:LEGO/homebrew-tap"
 if ! "$brew" list lego/tap/lego-cli >/dev/null 2>&1; then
   info "Installing the LEGO CLI"
+  # The formula downloads from a private release with gh's token. gh comes from mise, which isn't activated in this shell
+  export PATH="$HOME/.local/share/mise/shims:$PATH"
+  if command -v gh >/dev/null && ! gh auth status >/dev/null 2>&1; then
+    info "Logging in to GitHub CLI (authorize SSO for the LEGO org when asked)"
+    gh auth login --hostname github.com --git-protocol ssh --skip-ssh-key --web || true
+  fi
   # Fail instead of waiting for a password or host key prompt that brew hides
   export GIT_TERMINAL_PROMPT=0 GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=15"
   if ! timeout 30 git ls-remote "$tap" HEAD >/dev/null 2>&1; then
     warn "No access to $tap. Authorize your SSH key for the LEGO org (https://github.com/settings/keys, Configure SSO), then run: brew tap lego/tap $tap && brew install lego/tap/lego-cli"
   elif ! { "$brew" tap lego/tap "$tap" && "$brew" install lego/tap/lego-cli; }; then
-    warn "LEGO CLI install failed. Run: brew tap lego/tap $tap && brew install lego/tap/lego-cli"
+    warn "LEGO CLI install failed. Check that 'gh auth status' works and the token is SSO-authorized for LEGO, then run: brew install lego/tap/lego-cli"
   fi
 fi
